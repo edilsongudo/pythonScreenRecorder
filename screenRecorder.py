@@ -8,16 +8,21 @@ import keyboard
 
 def main():
     SCREEN_SIZE = (1024, 600)
+
     fourcc = cv2.VideoWriter_fourcc('m', 'p', '4', 'v')
-    now = str(datetime.datetime.now())
-    out = cv2.VideoWriter(f"{now.replace(':', '-')}.mp4",
+    time_stamp = datetime.datetime.now().strftime('%Y-%m-%d %H-%M-%S')
+    file_name = f'{time_stamp}.mp4'
+    print(file_name)
+
+    out = cv2.VideoWriter(file_name,
                           fourcc, 20.0, (SCREEN_SIZE))
 
     waitKey_value = 1
-    fps = 60
+    fps = 240
     prev = 0
 
     print('Recording... Press [F10] to stop')
+
     while True:
         time_elapsed = time.time() - prev
         img = pyautogui.screenshot()
